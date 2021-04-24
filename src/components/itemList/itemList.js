@@ -19,23 +19,17 @@ export default class ItemList extends Component {
             })
     }
     renderItems(arr) {
-        return arr.map((item, i) => {
-            // const {id, name} = item;
+        return arr.map((item) => {
+             const {id, name} = item;
             return (
-                // <li
-                //     key={id}
-                //     className="list-group-item"
-                //     onClick={() => this.props.onCharSelected(id)}
-                //     >
-                //     {name}
-                // </li>
                 <li
-                    key={i}
+                    key={id}
                     className="list-group-item"
-                    onClick={() => this.props.onCharSelected(i)}
+                    onClick={() => this.props.onCharSelected(id)}
                     >
-                    {item.name}
+                    {name}
                 </li>
+                
             )
         })
     }

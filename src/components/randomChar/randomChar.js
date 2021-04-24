@@ -65,7 +65,7 @@ const Veiw = ({char}) => {
 
     return(
         <>
-            <h4>Random Character: {name ? name : "no data:("}</h4>
+            <h4>Random Character: {name}</h4>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item d-flex justify-content-between">
                     <span className="term">Gender </span>
@@ -73,15 +73,15 @@ const Veiw = ({char}) => {
                 </li>
                 <li className="list-group-item d-flex justify-content-between">
                     <span className="term">Born </span>
-                    <span>{born ? born : "no data:("}</span>
+                    <span>{born}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between">
                     <span className="term">Died </span>
-                    <span>{died ? died : "no data:("}</span>
+                    <span>{died }</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between">
                     <span className="term">Culture </span>
-                    <span>{culture ? culture : "no data:("}</span>
+                    <span>{culture}</span>
                 </li>
             </ul>
         </>

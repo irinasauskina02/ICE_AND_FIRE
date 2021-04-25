@@ -4,11 +4,14 @@ import './app.css';
 import Header from '../header';
 import RandomChar from '../randomChar';
 import CharacterPage from '../characterPage';
+import gotServisec from '../../servisec/gotServisec';
+import ItemList from '../itemList';
+import CharDetails from '../charDetails';
 import ErrorMessage from '../error';
 
 
 export default class App extends Component {
-
+    gotServisec = new gotServisec();
     state = {
         showRandomChar: true,
       
@@ -56,6 +59,30 @@ export default class App extends Component {
                         </Col>
                     </Row>
                    <CharacterPage/>
+                   <Row>
+                        <Col md='6'>
+                            <ItemList 
+                                onItemSelected={this.onItemSelected}
+                                getData = {this.gotServisec.getBooks}
+                                renderItem = {(item) => `${item.name} (${item.numberOfPages})`}
+                            />
+                        </Col>
+                        <Col md='6'>
+                            <CharDetails charId = {this.state.selectedChar} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md='6'>
+                            <ItemList 
+                                onItemSelected = {this.onItemSelected}
+                                getData = {this.gotServisec.getHouses}
+                                renderItem = {(item) => item.name}
+                            />
+                        </Col>
+                        <Col md='6'>
+                            <CharDetails charId = {this.state.selectedChar} />
+                        </Col>
+                    </Row>
                 </Container>
             </>
         );

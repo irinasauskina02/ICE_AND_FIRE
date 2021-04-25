@@ -5,7 +5,7 @@ export default class gotServisec {
        
     }
 
-    async getResource(url){
+    getResource = async (url) => {
         const res = await fetch(`${this._apiBase}${url}`);
     
         if (!res.ok) {
@@ -16,33 +16,33 @@ export default class gotServisec {
         
     }
 
-    async getCharacters() {
+    getCharacters = async () => {
         const res = await this.getResource(`/characters?page=5&pageSize=10`);
         return res.map(this._transformCharacter);
     }
 
-    async getCharacter(id) {
+    getCharacter= async (id) => {
         const character = await this.getResource(`/characters/${id}/`);
         return this._transformCharacter(character);
     }
 
-    getBooks() {
+    getBooks = () => {
         return this.getResource(`/books/`);
     }
 
-    getBook(id) {
+    getBook= (id) => {
         return this.getResource(`/books/${id}/`);
     }
 
-    getHouses() {
+    getHouses = () => {
         return this.getResource(`/houses/`);
     }
 
-    getHouse(id) {
+    getHouse = (id) => {
         return this.getResource(`/houses${id}/`);
     }
 
-    isSet(data) {
+    isSet = (data) => {
         if (data) {
             return data
         } else {
@@ -63,6 +63,26 @@ export default class gotServisec {
             born: this.isSet(char.born),
             died: this.isSet(char.died), 
             culture: this.isSet(char.culture)
+        };
+    }
+    _transformHouse = (house) => {
+        return {
+            id: this._extractId(house),
+            name: this.isSet(house.name),
+            region: this.isSet(house.region),
+            words: this.isSet(house.words),
+            titles: this.isSet(house.titles),
+            ancestralWeapons: this.isSet(house.ancestralWeapons)
+        };
+    }
+    
+    _transformBook = (book) => {
+        return {
+            id: this._extractId(book),
+            name: this.isSet(book.name),
+            numberOfPages: this.isSet(book.numberOfPages),
+            publisher: this.isSet(book.publisher),
+            released: this.isSet(book.released)
         };
     }
 

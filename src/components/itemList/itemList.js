@@ -1,33 +1,34 @@
 import React, {Component} from 'react';
 import './itemList.css';
-import gotServisec from '../../servisec/gotServisec';
 import Spinner from '../spinner/spiner';
-export default class ItemList extends Component {
-    gotServisec = new gotServisec();
+export default class ItemList extends Component {  
 
     state = {
-        charList: null,
+        itemList: null,
        
     }
-
     componentDidMount() {
-        this.gotServisec.getCharacters()
-            .then((charList) => {
+
+        const {getData} = this.props;       
+        getData()
+            .then((itemList) => {
                 this.setState( {
-                    charList
+                    itemList
                 })
             })
     }
+
     renderItems(arr) {
         return arr.map((item) => {
-             const {id, name} = item;
+             const {id} = item;
+             const lable = this.props.renderItem(item);
             return (
                 <li
                     key={id}
                     className="list-group-item"
-                    onClick={() => this.props.onCharSelected(id)}
+                    onClick={() => this.props.onItemSelected(id)}
                     >
-                    {name}
+                    {lable}
                 </li>
                 
             )
@@ -36,12 +37,12 @@ export default class ItemList extends Component {
 
    
     render() {
-        const {charList} = this.state;        
+        const {itemList} = this.state;        
 
-        if(!charList){
+        if(!itemList){
             return <Spinner/>
         }
-        const item = this.renderItems(charList);
+        const item = this.renderItems(itemList);
 
         return (
             <ul className="item-list list-group">

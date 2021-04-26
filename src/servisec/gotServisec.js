@@ -21,25 +21,29 @@ export default class gotServisec {
         return res.map(this._transformCharacter);
     }
 
-    getCharacter= async (id) => {
+    getCharacter = async (id) => {
         const character = await this.getResource(`/characters/${id}/`);
         return this._transformCharacter(character);
     }
 
-    getBooks = () => {
-        return this.getResource(`/books/`);
+    getBooks = async () => {
+        const res = await this.getResource(`/books/`);
+        return res.map(this._transformBook);
     }
 
-    getBook= (id) => {
-        return this.getResource(`/books/${id}/`);
+    getBook = async (id) => {
+        const book = await this.getResource(`/books/${id}/`);
+        return this._transformBook(book);
     }
 
-    getHouses = () => {
-        return this.getResource(`/houses/`);
+    getHouses = async () => {
+        const res = await this.getResource(`/houses/`);
+        return res.map(this._transformHouse);
     }
 
-    getHouse = (id) => {
-        return this.getResource(`/houses${id}/`);
+    getHouse = async (id) => {
+        const house = await this.getResource(`/houses/${id}/`);
+        return this._transformHouse(house);
     }
 
     isSet = (data) => {

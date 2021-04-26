@@ -3,18 +3,19 @@ import {Col, Row, Container} from 'reactstrap';
 import './app.css';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import CharacterPage from '../characterPage';
+// import CharacterPage, BookPage from '../pages/characterPage';
 import gotServisec from '../../servisec/gotServisec';
 import ItemList from '../itemList';
-import CharDetails from '../charDetails';
+import ItemDetails, {Field} from '../itemDetails';
+import {HousesPage, BookPage, CharacterPage} from '../pages';
 import ErrorMessage from '../error';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
 export default class App extends Component {
     gotServisec = new gotServisec();
     state = {
-        showRandomChar: true,
-      
+        showRandomChar: true,       
         error: false
     }
     //Обработка ошибок
@@ -25,6 +26,8 @@ export default class App extends Component {
         })
     }
 
+
+    
     toggleRandom = () => {
         this.setState((state) => {
             return {
@@ -43,48 +46,37 @@ export default class App extends Component {
        }
 
         return (
-            <> 
-                <Container>
-                    <Header />
-                </Container>
-                <Container>
-                    <Row>
-                        <Col lg={{size: 5, offset: 0}}>
-                            {toggle}
-                            <button 
-                                className = "toggle-btn"
-                                onClick = {this.toggleRandom}
-                            >Toggle random character</button>
-                            
-                        </Col>
-                    </Row>
-                   <CharacterPage/>
-                   <Row>
-                        <Col md='6'>
-                            <ItemList 
-                                onItemSelected={this.onItemSelected}
-                                getData = {this.gotServisec.getBooks}
-                                renderItem = {(item) => `${item.name} (${item.numberOfPages})`}
-                            />
-                        </Col>
-                        <Col md='6'>
-                            <CharDetails charId = {this.state.selectedChar} />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md='6'>
-                            <ItemList 
-                                onItemSelected = {this.onItemSelected}
-                                getData = {this.gotServisec.getHouses}
-                                renderItem = {(item) => item.name}
-                            />
-                        </Col>
-                        <Col md='6'>
-                            <CharDetails charId = {this.state.selectedChar} />
-                        </Col>
-                    </Row>
-                </Container>
-            </>
+            <Router>
+                <div className="app"> 
+                    <Container>
+                        <Header />
+                    </Container>
+                    <Container>
+                        <Row>
+                            <Col lg={{size: 5, offset: 0}}>
+                                {toggle}
+                                <button 
+                                    className = "toggle-btn"
+                                    onClick = {this.toggleRandom}
+                                >Toggle random character</button>
+                                
+                            </Col>
+                        </Row>
+                        {/* персонажи */}
+                        {/* ищет все совпадения а не точный адрес */}
+                        <Route path='/characters' component={CharacterPage}/>
+                        {/* <CharacterPage/> */}
+                        {/* дома    */}
+                        <Route path='/houses' component={HousesPage}/>
+                        {/* <HousesPage/> */}
+                        {/* книги */}
+                        <Route path='/books' component={BookPage}/>
+                        {/* <BookPage/> */}
+                    
+                    </Container>
+                </div>
+            </Router>
+            
         );
     }    
 };

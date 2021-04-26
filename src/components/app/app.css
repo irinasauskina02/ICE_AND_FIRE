@@ -1,6 +1,6 @@
 .toggle-btn {
     padding: 12px;
-    background-color: #5e6483;
+    background-color: rgb(104, 104, 131);
     border: none;
     border-radius: 4px;
     color: #fff;
@@ -11,4 +11,9 @@
 }
 .toggle-btn:focus {
     outline: none;
+}
+.app {
+    background: rgb(104, 104, 131) url('got.jpeg') center center no-repeat;
+    background-size: cover;
+    height: 1000px;	
 }

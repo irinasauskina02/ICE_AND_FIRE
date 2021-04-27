@@ -5,6 +5,8 @@ import ErrorMessage from '../error';
 import gotServisec from '../../servisec/gotServisec';
 import RowBlock from '../rowBlock';
 
+import './pages.css';
+
 export default class BookPage extends Component { 
     gotService = new gotServisec();
 
@@ -48,7 +50,10 @@ export default class BookPage extends Component {
         )
 
         return (
-           <RowBlock left={itemList} right={itemDetails} />
+            <>  
+                <h2 className="row-h2">Books</h2>  
+                <RowBlock left={itemList} right={itemDetails} />
+            </>
         )
     }
 

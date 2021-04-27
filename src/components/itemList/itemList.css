@@ -4,3 +4,6 @@
 .list-group {
     margin-bottom: 10px;
 }
+.list-group-item.list-item {
+    padding: 0.55rem 0.75rem;
+}

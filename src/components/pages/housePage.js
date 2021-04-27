@@ -5,6 +5,8 @@ import ErrorMessage from '../error';
 import gotServisec from '../../servisec/gotServisec';
 import RowBlock from '../rowBlock';
 
+import './pages.css';
+
 export default class HousesPage extends Component {
     gotService = new gotServisec();
     state = {
@@ -49,7 +51,10 @@ export default class HousesPage extends Component {
         )
 
         return (
-           <RowBlock left={itemList} right={itemDetails} />
+            <>
+                <h2 className="row-h2">Houses</h2>  
+                <RowBlock left={itemList} right={itemDetails} />
+           </>
         )
     }
 }

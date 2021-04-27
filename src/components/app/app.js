@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import {Col, Row, Container} from 'reactstrap';
-import './app.css';
 import Header from '../header';
 import RandomChar from '../randomChar';
 // import CharacterPage, BookPage from '../pages/characterPage';
 import gotServisec from '../../servisec/gotServisec';
-import ItemList from '../itemList';
-import ItemDetails, {Field} from '../itemDetails';
+
 import {HousesPage, BookPage, CharacterPage} from '../pages';
 import ErrorMessage from '../error';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
+import './app.css';
 
 export default class App extends Component {
     gotServisec = new gotServisec();
@@ -64,14 +63,11 @@ export default class App extends Component {
                         </Row>
                         {/* персонажи */}
                         {/* ищет все совпадения а не точный адрес */}
-                        <Route path='/characters' component={CharacterPage}/>
-                        {/* <CharacterPage/> */}
+                        <Route path='/characters' component={CharacterPage}/>                        
                         {/* дома    */}
-                        <Route path='/houses' component={HousesPage}/>
-                        {/* <HousesPage/> */}
+                        <Route path='/houses' component={HousesPage}/>                       
                         {/* книги */}
-                        <Route path='/books' component={BookPage}/>
-                        {/* <BookPage/> */}
+                        <Route path='/books' component={BookPage}/>                        
                     
                     </Container>
                 </div>

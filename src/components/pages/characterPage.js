@@ -6,7 +6,7 @@ import ErrorMessage from '../error';
 import gotServisec from '../../servisec/gotServisec';
 import RowBlock from '../rowBlock';
 
-
+import './pages.css';
 
 export default class CharacterPage extends Component {
     gotServisec = new gotServisec();
@@ -54,8 +54,11 @@ export default class CharacterPage extends Component {
                 <Field field="culture" label = 'Culture'/>
             </ItemDetails>
         );
-        return(           
-            <RowBlock left={itemList} right={charDetails}/>
+        return( 
+            <>  
+                <h2 className="row-h2">Characters</h2>        
+                <RowBlock left={itemList} right={charDetails}/>
+            </>  
         )
     }
 }

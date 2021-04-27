@@ -25,7 +25,7 @@ export default class ItemList extends Component {
             return (
                 <li
                     key={id}
-                    className="list-group-item"
+                    className="list-group-item list-item"
                     onClick={() => this.props.onItemSelected(id)}
                     >
                     {lable}
@@ -45,9 +45,12 @@ export default class ItemList extends Component {
         const item = this.renderItems(itemList);
 
         return (
+            
+            
             <ul className="item-list list-group">
                 {item}
             </ul>
+            
         );
     }
 }
